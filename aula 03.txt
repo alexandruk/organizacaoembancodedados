@@ -1,0 +1,46 @@
+-- Criar a tabela cliente
+
+CREATE TABLE CLIENTE (
+CODIGO NUMBER (4),
+NOME VARCHAR2 (30),
+DATA_NASC DATE,
+UF CHAR (2);
+
+
+-- Adicionar colunas ou restrições
+ALTER TABLE CLIENTE
+ADD EMAIL VARCHAR2 (40);
+
+ALTER TABLE CLIENTE
+ADD CONSTRAINT CLIENTE_PK PRIMARY KEY (CODIGO);
+
+-- Alterar tamanho de uma coluna
+ALTER TABLE CLIENTE
+MODIFY EMAIL VARCHAR2 (50);
+
+-- Renomear uma coluna
+ALTER TABLE CLIENTE
+RENAME COLUMN EMAIL TO E_MAIL;
+
+-- Eliminar uma coluna
+-- Haverá a perda dos dados armazenados na coluna
+ALTER TABLE CLIENTE
+DROP COLUMN E_MAIL;
+
+-- Renomear uma tabela
+RENAME CLIENTE TO CLIENTES;
+
+-- Truncar uma tabela (elimina todos os dados da tabela)
+-- A estrutura da tabela permanece
+TRUNCATE TABLE CLIENTE;
+
+-- Criar uma tabela com base em outra
+-- A tabela terá a mesma estrutura e os mesmos dados da tabela original
+CREATE TABLE CLIENTE2 AS SELECT * FROM CLIENTES;
+
+-- Criar uma tabela com base em apenas algumas colunas da tabela original
+CREATE TABLE CLIENTE3 AS SELECT CODIGO, NOME FROM CLIENTES;
+
+-- Eliminar tabelas e suas respectivas constraints
+DROP TABLE CLIENTE3 CASCADE CONSTRAINTS;
+
