@@ -1,0 +1,72 @@
+CREATE TABLE ALUNO (
+RA NUMBER (4),
+NOME VARCHAR2 (30),
+UF CHAR (2),
+CONSTRAINT ALUNO_PK PRIMARY KEY (RA)
+);
+
+-- DML - Data Manipulation Language
+
+-- Inserir dados em uma tabela declarando os nomes das colunas
+INSERT INTO ALUNO (RA, NOME, UF)
+VALUES (1001, 'ANTONIO ANDRADE', 'SP');
+
+-- Inserir dados em uma tabela sem declarar os nomes das colunas
+-- Os dados devem ser inseridos conforme a ordem das colunas
+INSERT INTO ALUNO VALUES (1002, 'CLAUDIO CARDOSO', 'RJ');
+INSERT INTO ALUNO VALUES (1003, 'BEATRIZ BARBOSA', 'SP');
+
+-- Atualizar dados de uma tabela
+UPDATE ALUNO
+SET UF = 'RS'
+WHERE CODIGO = 1002;
+
+UPDATE ALUNO
+SET NOME = 'ADRIANO', UF = 'MG'
+WHERE CODIGO = 1001;
+
+-- Eliminar linhas de uma tabela
+DELETE FROM ALUNO WHERE CODIGO = 1002;
+
+--
+
+-- DQL - Data Query Language
+
+--
+
+-- Apresentar os dados de todas as colunas da tabela
+SELECT * FROM ALUNO;
+
+-- Apresentar os dados de algumas colunas da tabela
+SELECT NOME, UF FROM ALUNO;
+
+-- Apresentar os dados referentes a uma linha específica da tabela
+SELECT * FROM ALUNO WHERE CODIGO = 1001;
+
+SELECT NOME, UF FROM ALUNO WHERE CODIGO = 1001;
+
+-- Utilizar alias (apelidos) para colunas de uma tabela
+SELECT NOME "NOME ALUNO", UF "ESTADO" FROM ALUNO;
+
+-- Utilizar alias (apelidos) para nomes de tabelas
+SELECT NOME, UF FROM ALUNO A;
+
+-- Utilizar operador LIKE com caracteres coringa % e _
+(Apresentar diversos exemplos.)
+
+-- DISTINCT
+SELECT UF FROM ALUNO;
+SELECT DISTINCT UF FROM ALUNO;
+
+-- ORDER BY
+SELECT * FROM ALUNO;
+SELECT * FROM ALUNO ORDER BY NOME;
+SELECT * FROM ALUNO ORDER BY NOME DESC;
+
+-- GROUP BY (ASC / DESC)
+SELECT UF, COUNT(RA) FROM ALUNO GROUP BY UF;
+SELECT UF, COUNT(*) FROM ALUNO GROUP BY UF;
+
+-- HAVING
+SELECT UF, COUNT(*) FROM ALUNO GROUP BY UF WHRE UF = 'SP'; -- NÃO FUNCIONA
+SELECT UF, COUNT(*) FROM ALUNO GROUP BY UF HAVING UF = 'SP';
